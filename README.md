@@ -1,1 +1,1 @@
-# KrishiSmart
+# KrishiSmart app
