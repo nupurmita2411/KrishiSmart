@@ -1,20 +1,28 @@
-<<<<<<< HEAD
-# React + Vite
+# 🌾 KrishiSmart — Crop Disease Detection & Local Farmers Support
+CSE451 (Software Engineering), IUB, Autumn 2026.
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Run it (3 commands)
+```bash
+pip install -r requirements.txt
+cd backend
+uvicorn main:app --reload
+```
+Open http://127.0.0.1:8000
 
-Currently, two official plugins are available:
+- Admin login: phone `admin`, password `admin123`
+- Farmer: register on the home page, then log in.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Project structure
+| Folder / file | What it is | Owner |
+|---|---|---|
+| `backend/main.py, database.py, auth.py, diagnosis.py` | API core, login, diagnose, history | Avijit |
+| `frontend/index.html, style.css, app.js` | Login/register page, shared style & helpers | Avijit |
+| `backend/prices.py`, `backend/data/prices.json`, `frontend/prices.html` | Market price module | Nupur |
+| `backend/admin.py`, `frontend/admin.html` | Admin dashboard | Sabbir |
+| `ml/predict.py, ml/train_model.py`, `backend/data/diseases.json`, `frontend/diagnose.html, history.html` | AI module + diagnosis pages | Fariha |
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-=======
-# KrishiSmart app
->>>>>>> origin/main
+## Simplifications (prototype)
+- JSON files instead of PostgreSQL (`backend/data/`).
+- AI prediction is a **dummy** by default (`ml/predict.py`); the real CNN (`ml/train_model.py`) is plugged in automatically when `ml/model.keras` exists.
+- Plain HTML/JS frontend instead of React/Next.js; local folder instead of cloud image storage.
+- Bangla interface and Supabase/PostgreSQL are planned as future work.
