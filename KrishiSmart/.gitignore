@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+backend/uploads/
+backend/data/users.json
+backend/data/diagnoses.json
+ml/dataset/
+ml/model.keras
+.DS_Store
