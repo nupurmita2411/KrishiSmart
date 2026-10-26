@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KrishiSmart - History</title><link rel="stylesheet" href="/style.css"></head>
+<body><nav id="nav"></nav>
+<div class="page-title"><h2>🗂️ আমার আগের ফলাফল<span class="en">My past diagnoses</span></h2></div>
+<main>
+  <div class="card"><p id="msg" class="msg"></p>
+    <div class="scroll"><table>
+      <thead><tr><th>ছবি<span class="en">Photo</span></th><th>রোগ<span class="en">Disease</span></th>
+      <th>নিশ্চয়তা<span class="en">Confidence</span></th><th>তারিখ<span class="en">Date</span></th></tr></thead>
+      <tbody id="rows"></tbody></table></div>
+  </div>
+</main>
+<script src="/app.js"></script>
+<script>
+if (requireLogin()) { renderNav(); load(); }
+async function load() {
+  try {
+    const list = await api("/api/history");
+    rows.innerHTML = list.length ? list.map(h => `<tr>
+      <td><img src="${h.image_url}" width="70" style="border-radius:8px"></td>
+      <td><b>${h.disease_name_bn || h.disease_name}</b><span class="en">${h.disease_name} • ${h.crop}</span></td>
+      <td><span class="badge ${h.sure ? "" : "low"}">${Math.round(h.confidence * 100)}%</span></td>
+      <td>${h.created_at}</td></tr>`).join("")
+      : `<tr><td colspan='4'>${bi("এখনো কোনো ফলাফল নেই।", "No diagnoses yet.")}</td></tr>`;
+  } catch (e) { msg.textContent = e.message; }
+}
+</script></body></html>
